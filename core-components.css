@@ -1,0 +1,258 @@
+/* common */
+
+@keyframes spin {
+  0% {
+    transform: var(--hover-transform,) rotate(0deg);
+    font-size: 1.5em;
+  }
+  50% {
+    transform: var(--hover-transform,) rotate(180deg);
+    font-size: 1.5em;
+  }
+  100% {
+    transform: var(--hover-transform,) rotate(360deg);
+    font-size: 1.5em;
+  }
+}
+
+.clickable {
+  will-change: background, color, scale;
+  --hover-transform: scale(0.8)
+}
+
+.clickable:hover,
+.clickable:focus {
+  background: var(--hover-bg, var(--color-secondary-hover)) !important;
+  color: var(--hover-text, var(--color-text)) !important;
+  transform: var(--hover-transform, );
+}
+
+.clickable:focus-visible {
+  outline: 3px solid orange
+}
+
+/* header */
+
+.root-header {
+  position: sticky;
+  height: fit-content;
+  display: flex;
+  gap: 1rem;
+  top: 1rem;
+}
+
+.header-text {
+  font-size: 1.75rem;
+}
+
+.header-group {
+  display: flex;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 50vw;
+  background: var(--color-secondary);
+  transition: background 200ms ease-in-out;
+}
+
+.header-group.group-primary {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-group.group-icon:hover,
+.header-group.group-icon:focus,
+.header-group.group-icon:focus-within {
+  background: var(--hover-bg, var(--color-secondary-hover));
+  color: var(--hover-text, var(--color-text));
+}
+
+.header-group.group-icon > button {
+  color: inherit;
+}
+
+.header-group:has(.btn-back) {
+  background: none;
+  --hover-bg: var(--color-secondary-hover);
+}
+
+.header-title {
+  user-select: none;
+  pointer-events: none;
+  touch-action: none;
+  margin: 0 1rem;
+}
+
+/* footer */
+
+.root-footer.floating {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* bottom navbar */
+
+.bottom-navbar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-secondary);
+  padding: 0 1rem;
+  gap: 1rem;
+}
+
+.bottom-navbar > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* top navbar */
+
+.top-navbar {
+  display: none;
+}
+
+/* page */
+
+.page {
+  max-height: 100vw;
+  height: 100%;
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* buttons */
+
+.btn-icon {
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-icon-footer {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  --hover-bg: var(--color-primary-hover);
+  border-radius: 1rem;
+  padding: 1rem;
+  gap: 5px;
+}
+
+.btn-icon-footer.active {
+  background: var(--color-brand);
+  color: var(--color-primary);
+  --hover-bg: var(--color-brand-hover);
+  --hover-text: var(--color-primary);
+}
+
+.btn-icon-footer > i {
+  font-size: 1.5rem;
+}
+
+.btn-fab {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-secondary);
+  --bg-hover: var(--color-secondary-hoverr, red);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+/* tooltip */
+
+.tooltip-container {
+  position: fixed;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  font-size: 13px;
+  box-shadow: var(--color-secondary) 0 0 15px 1px;
+
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: 0.12s ease;
+}
+
+.tooltip-container.show {
+  opacity: 0.95;
+  transform: scale(1);
+}
+
+/* FAB */
+
+.page-fab {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: clamp(1rem, 15vw, 2rem);
+}
+
+.fab-display {
+  cursor: pointer;
+  background: var(--color-brand);
+  color: var(--color-primary);
+  --hover-bg: var(--color-brand-hover);
+  --hover-text: var(--color-primary);
+  width: min(4rem, 15vw);
+  aspect-ratio: 1 / 1;
+  padding: 1rem;
+  border-radius: 50vw;
+  line-height: 1rem;
+}
+
+.fab-display:not(.show) * {
+  touch-action: none;
+  pointer-events: none;
+  animation: spin 3000ms ease-in-out 40ms;
+}
+
+.fab-display:active {
+  background: var(--color-brand-hover);
+}
+
+.fab-content {
+  will-change: opacity, bottom, height, transform;
+  position: absolute;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+  touch-action: none;
+  pointer-events: none;
+  user-select: none;
+  transition: bottom 100ms ease-in, opacity 100ms ease, height 150ms ease-in,
+    transform 150ms ease-out;
+  transform: scale(0.1);
+  opacity: 0;
+  bottom: 0%;
+  height: 0%;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.fab-display.show ~ .fab-content {
+  touch-action: auto;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 100%;
+  bottom: 100%;
+  height: 100%;
+  transform: scale(1);
+}

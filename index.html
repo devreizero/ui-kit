@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RASKA - Finance Tool</title>
+
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/core-components.css" />
+    <link rel="stylesheet" href="/icons/fontawesome-7.css" />
+    <link rel="stylesheet" href="/dist/icons/fontawesome-7.solid.min.css" />
+
+    <script src="/script/fab.js" defer></script>
+    <script src="/script/tooltip.js" defer></script>
+  </head>
+  <body>
+    <div class="container fullscreen">
+      <div class="app">
+        <header class="root-header">
+          <div class="header-group group-icon">
+            <button
+              class="btn-icon btn-back tooltip clickable"
+              aria-label="Back to Previous Page">
+              <i class="fas fa-arrow-left header-text"></i>
+            </button>
+          </div>
+          <div class="header-group group-primary" style="visibility: hidden;" aria-hidden="true">
+            <h1 id="page-title" class="header-title header-text">HOME</h1>
+          </div>
+          <div class="header-group group-icon hover-style--brand">
+            <button class="btn-icon tooltip clickable" aria-label="Open Navigation Bar">
+              <i class="fas fa-bars header-text"></i>
+            </button>
+
+            <nav class="top-navbar">
+              <div class="account-manager">
+                <div class="account-active">
+                  <div class="account-icon-wrap">
+                    <picture>
+                      <source
+                        src="/images/dummy-avatar.webp"
+                        type="image/webp" />
+                      <img class="account-icon"
+                        src="/images/dummy-avatar.jpg"
+                        alt="Profile Picture" />
+                    </picture>
+                  </div>
+                  <div class="account-data">
+                    <h2 class="account-name">My Account</h2>
+                    <p class="account-wallet">
+                      <span class="account-currency">$</span>0
+                    </p>
+                  </div>
+                </div>
+                <div class="account-switcher">
+                  <button class="btn clickable">Switch Account</button>
+                  <button
+                    class="btn tooltip clickable"
+                    aria-label="Add Account">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                  <ul class="account-list" role="listbox">
+                    <li role="option" class="active" aria-selected="true">
+                      <button class="account-card">
+                        <div class="account-icon-wrap">
+                          <picture>
+                            <source
+                              src="/images/dummy-avatar.webp"
+                              type="image/webp" />
+                            <img class="account-icon"
+                              src="/images/dummy-avatar.jpg"
+                              alt="Profile Picture" />
+                          </picture>
+                        </div>
+                        <div class="account-data">
+                          <h2 class="account-name">My Account</h2>
+                          <p class="account-wallet">
+                            <span class="account-currency">$</span>0
+                          </p>
+                        </div>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <ul class="classic-list">
+                <li class="no-pwa sublist navbar-external">
+                  <ul class="classic-list">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/raska">RASKA</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <button
+                    class="btn-setting"
+                    onclick="openDialog('export-tabs');">
+                    Export
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="btn-setting"
+                    onclick="openDialog('import-tabs');">
+                    Import
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        <main class="root-content">
+          <section id="home" class="contaniner page active">
+            <h2 class="page-title">Welcome back, {user}</h2>
+            <span class="page-text">How is your day?</span>
+            
+            <div class="account-active">
+              <div class="account-icon-wrap">
+                <picture>
+                  <source
+                    src="/images/dummy-avatar.webp"
+                    type="image/webp" />
+                  <img class="account-icon"
+                    src="/images/dummy-avatar.jpg"
+                    alt="Profile Picture" />
+                </picture>
+              </div>
+              <div class="account-data">
+                <h2 class="account-name">My Account</h2>
+                <p class="account-wallet">
+                  <span class="account-currency">$</span>0
+                </p>
+              </div>
+            </div>
+
+            <h3 class="page-subtitle">Your Transaction This Week</h3>
+            <div class="page-fab">
+              <button
+                class="btn-icon fab-display tooltip clickable"
+                aria-label="Floating Action Bar">
+                <i class="fas fa-plus"></i>
+              </button>
+              <div id="fab-content" class="fab-content">
+                <button class="btn-fab clickable">Add</button>
+                <button class="btn-fab clickable">Remove</button>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer class="root-footer floating">
+          <nav class="bottom-navbar">
+            <button
+              class="btn-icon-footer clickable active"
+              onclick="openTab('home');">
+              <i class="fas fa-home"></i>
+              <span class="icon-text">Home</span>
+            </button>
+            <button
+              class="btn-icon-footer clickable"
+              onclick="openTab('transaction');">
+              <i class="fas fa-money-check"></i>
+              <span class="icon-text">Transaction</span>
+            </button>
+            <button
+              class="btn-icon-footer clickable"
+              onclick="openTab('statistic');">
+              <i class="fas fa-chart-bar"></i>
+              <span class="icon-text">Statistic</span>
+            </button>
+            <button
+              class="btn-icon-footer clickable"
+              onclick="openTab('setting');">
+              <i class="fas fa-gear"></i>
+              <span class="icon-text">Setting</span>
+            </button>
+          </nav>
+        </footer>
+      </div>
+    </div>
+
+    <div
+      class="dialog-container"
+      id="dialog-element"
+      aria-hidden="true"
+      role="presentation"
+      inert></div>
+
+    <div
+      class="tooltip-container"
+      id="tooltip-element"
+      aria-hidden="true"
+      role="presentation"
+      inert></div>
+    <script>
+      const tooltip = document.getElementById("tooltip-element");
+    </script>
+  </body>
+</html>
