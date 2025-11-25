@@ -1,0 +1,36 @@
+/* CAUTION: Include this file with media="(min-width: 754px)" */
+
+/* move bottom bottom and top navbar to sidebar */
+
+.app.dashboard {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-template-areas: 'side header' 'side content';
+}
+
+.primary-header {
+    grid-area: header;
+}
+
+.primary-navigation {
+    position: sticky;
+    grid-area: side;
+    overflow: auto;
+    height: fit-content;
+    max-height: 100svh;
+}
+
+.primary-content {
+    overflow: auto;
+    height: fit-content;
+    max-height: 100svh;
+}
+
+.top-navbar {
+    display: block;
+}
+
+.bottom-navbar {
+    position: static;
+}

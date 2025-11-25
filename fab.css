@@ -1,0 +1,104 @@
+/* FAB utama */
+.primary-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Tampilan FAB (ikon) */
+.primary-fab .fab-display {
+  touch-action: none;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand),
+    var(--color-brand-hover)
+  );
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Efek hover/fokus ikon */
+.primary-fab:hover .fab-display {
+  transform: scale(1.1) rotate(45deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: var(--color-primary-hover);
+  color: var(--color-text);
+}
+
+/* Kontainer tombol */
+.primary-fab .fab-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  bottom: 100%;
+}
+
+/* Tombol FAB individu */
+.primary-fab .btn-fab {
+  margin: 0.3rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.2s ease;
+}
+
+/* Hover tombol */
+.primary-fab .btn-fab:hover {
+  transform: translateY(0) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* FAB aktif: animasi muncul tombol */
+.primary-fab.active .fab-content {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.primary-fab.active .btn-fab {
+  bottom: 100%;
+  height: 100%;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: stagger animasi tombol */
+.primary-fab.active .btn-fab:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.primary-fab.active .btn-fab:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.primary-fab.active .btn-fab:nth-child(3) {
+  transition-delay: 0.15s;
+}
+.primary-fab.active .btn-fab:nth-child(4) {
+  transition-delay: 0.2s;
+}

@@ -20,10 +20,11 @@
   --color-secondary: rgb(220, 220, 220);
   --color-secondary-hover: rgb(230, 230, 230);
   --color-text: rgb(26, 26, 26);
+  --color-text-disabled: rgb(135, 135, 135);
 }
 
 /* dark mode override */
-@media (prefers-color-scheme: dark2) {
+@media (prefers-color-scheme: da2rk) {
   :root {
     --color-primary: rgb(26, 26, 26);
     --color-primary-hover: rgb(43, 43, 43);
@@ -40,6 +41,7 @@
 html,
 body {
   font-family: "Poppins", sans-serif, system-ui;
+  background: var(--color-primary);
   color: var(--color-text);
   padding: 0;
   margin: 0;
@@ -47,9 +49,12 @@ body {
   height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
 .container {
   padding: 1rem;
-  background: var(--color-primary);
 }
 
 .fullscreen {

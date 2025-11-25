@@ -1,8 +1,13 @@
 document.querySelectorAll(".tooltip").forEach((target) => {
-  target.addEventListener("mouseenter", () => showTooltip(target));
-  target.addEventListener("mouseleave", hideTooltip);
+  let timeout;
+  target.addEventListener("mouseenter", () => {
+    timeout = setTimeout(() => showTooltip(target), 1000);
+  });
+  target.addEventListener("mouseleave", () => {
+    clearTimeout(timeout);
+    hideTooltip();
+  });
 
-  target.addEventListener("focus", () => showTooltip(target));
   target.addEventListener("blur", hideTooltip);
 });
 

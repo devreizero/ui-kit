@@ -1,5 +1,5 @@
 (function(){
-    const footer = document.querySelector('.root-footer');
+    const bottomNavbar = document.querySelector('.bottom-navbar');
     const onclicks = [];
     let state = [];
     let bottom = 0;
@@ -13,7 +13,6 @@
             bottom += height;
         }
 
-        target = target.querySelector('.fab-display');
         if(target && !onclicks.includes(target)) {
             onclicks.push(target);
         }
@@ -21,9 +20,9 @@
 
     function repositionAllFAB() {
         state = [];
-        bottom = footer ? footer.getBoundingClientRect().height : 0;
+        bottom = bottomNavbar ? bottomNavbar.getBoundingClientRect().height : 0;
         count = 0;
-        document.querySelectorAll(".page-fab").forEach((target) => {
+        document.querySelectorAll(".primary-fab").forEach((target) => {
             repositionFAB(target);
         });
     }
@@ -32,12 +31,11 @@
     window.repositionAllFAB = repositionAllFAB;
 
     window.addEventListener('resize', repositionAllFAB);
-    window.addEventListener('unload', repositionAllFAB);
 
     window.addEventListener('click', (ev) => {
         const idx = onclicks.indexOf(ev.target || ev.srcElement);
         if(idx >= 0) {
-            onclicks[idx].classList.toggle('show');
+            onclicks[idx].classList.toggle('active');
         }
     });
 
